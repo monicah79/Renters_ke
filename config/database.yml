@@ -1,0 +1,7 @@
+development:
+  database: Renters_ke
+  username: monnie
+  password: monnie
+  adapter: postgresql
+
+
