@@ -1,12 +1,12 @@
 # Renters_ke
-<a name="Bloggers-App"></a>
+<a name="Renters-App"></a>
 
 <!-- TABLE OF CONTENTS -->
 
 # 📗 Table of Contents
 
 - [📗 Table of Contents](#-table-of-contents)
-- [📖 ROR Blog app ](#-blog-app-)
+- [📖 ROR Renters app ](#-Renters-app-)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
@@ -22,9 +22,9 @@
   - [🤝 Acknowledgement ](#-acknowledgement-)
   - [📝 License ](#-license-)
 
-# 📖 Blog App <a name="about-project"></a>
+# 📖 Renters App <a name="about-project"></a>
 
-- This is a blogging application built on Ruby on Rails for the backend. It enables users to browse through posts and comments from other users. Moreover, individuals who register can create their own posts, comment on existing ones, and express appreciation for posts by liking them. The application also seamlessly integrates with PostgreSQL.
+- This is a application built on Ruby on Rails for the backend. It enables users to browse through posts and comments from other users. Moreover, individuals who register can create their own posts, comment on existing ones, and express appreciation for posts by liking them. The application also seamlessly integrates with PostgreSQL.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -75,8 +75,8 @@ In order to run this project you need:
 
 Clone this repository to your desired folder:
 
-- git clone `https://github.com/monicah79/Bloggers-app.git`
-- cd Rails-Bloggers_App
+- git clone `https://github.com/monicah79/Renters_ke.git`
+- cd Rails-Renters_ke
 - bundle install
 - rails db:create
 - rails db:migrate
@@ -124,7 +124,7 @@ To run tests, run the following command accordingly:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/monicah79/Bloggers-app/issues).
+Feel free to check the [issues page](https://github.com/monicah79/Renters_ke/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -146,4 +146,4 @@ I would like to thank microverse for their resources.
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](https://github.com/monicah79/Bloggers-app/blob/create-data-model/license) licensed.
+This project is [MIT](https://github.com/monicah79/Renters_ke/blob/setup/license) licensed.
