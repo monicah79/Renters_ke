@@ -14,7 +14,6 @@ RSpec.describe Post, type: :model do
       expect(post).not_to be_valid
     end
 
-
     it 'is not valid without a title' do
       expect(subject).to_not be_valid
     end
@@ -61,7 +60,6 @@ RSpec.describe Post, type: :model do
       subject.likes_counter = 0
       expect(subject).to_not be_valid
     end
-
 
     it 'validates maximum length of title' do
       post.title = 'a' * 251
