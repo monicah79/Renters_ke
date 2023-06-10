@@ -4,4 +4,12 @@ development:
   password: monnie
   adapter: postgresql
 
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: Renters_ke tests
+  pool: 5
+  username: monnie
+  password: monnie
+  port: 5432
 
