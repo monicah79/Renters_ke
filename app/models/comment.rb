@@ -3,9 +3,8 @@ class Comment < ApplicationRecord
   belongs_to :author, class_name: 'User'
   belongs_to :user
 
-  validates :body, presence: true
+  validates :user, presence: true
 
-  after_save :update_comments_counter
 
   private
 
