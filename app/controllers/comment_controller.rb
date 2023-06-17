@@ -1,4 +1,5 @@
 class CommentController < ApplicationController
+  before_action :set_user
   def new
     @comment = Comment.new
   end
@@ -23,6 +24,10 @@ class CommentController < ApplicationController
       flash[:alert] = "Couldn't create Comment!"
       render :new
     end
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
   private
