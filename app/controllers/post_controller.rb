@@ -1,4 +1,6 @@
 class PostController < ApplicationController
+  before_action :set_user
+  before_action :set_post, except: %i[index new create]
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
@@ -45,8 +47,8 @@ class PostController < ApplicationController
 
   private
 
-  def set_post
-    @post = Post.find(params[:id])
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
   def post_params

@@ -1,60 +1,74 @@
-<h1 class="Head">Shows the details of posts for a given user<h1>
-
-  <section class='section-container'>
+<section class='user-container'>
+<% if @user.present? %>
+<%= link_to 'create post', user_path(@user.id) %>
+<% end %>
   <div class='user'>
-    <div class='profile-div'>
-      <% if @user && @user.photo %>
-        <div class='profile-photo'><%= @user.photo %></div>
-      <% else %>
-        <div class='default-photo'>Default photo</div>
-      <% end %>
-    </div>
-    <div class='user_name'>
-      <% if @user %>
-        <h2><%= @user.name %></h2>
-      <% else %>
-        <h2>Unknown user</h2>
-      <% end %>
+  <% if @user.present? && @user.photo.present? %>
+  <div><%= image_tag @user.photo, class: 'profile-photo' %></div>
+<% end %>
+  <div class='user_name'>
+    <h2><%= @user.name %></h2>
+    <div class='post_nums'>
+      <p class="post_count">Number of posts: <%= @user.posts_counter %></p>
     </div>
   </div>
-</section>
+  </div>
 
-  <section class="posts_container">
-    <% if @recent_posts.present? %>
-      <% @recent_posts.each_with_index do |post, index| %>
-        <div class="post">
-          <h3>Post #<%= index+1 %></h3>
-          <p class="post_text"><%= post.text %></p>
-          <p class="comments_likes">
-            Comments: <%= post.comments_counter %>,
-            Likes: <%= post.likes_counter %>
-          </p>
-        </div>
-      <% end %>
-    <% else %>
-      <p class='no-recent'> No recent posts.</p>
+  <div class="posts_container">
+  <% @posts.each_with_index do |post, index| %>
+  <%= link_to user_post_path(@user, post) do %>
+    <ul class="post">
+      <h3>Post #<%= index+1 %></h3>
+      <p class="post_text"><%= post.text %></p>
+      <p class="comments_likes">
+        Comments: <%= post.comments_counter %>,
+        Likes: <%= post.likes_counter %>
+      </p>
+    </ul>
     <% end %>
-  </section>
+  <% end %>
+  </div>
 
   <div class="post">
-  <h4>Comments:</h4>
-  <% if @post_comments %>
-    <% @post_comments.each do |comment| %>
-      <ul>
-        <% if comment.post_id === post.id %>
-          <li><%= comment.user.name %>: <%= comment.text %></li>
-        <% end %>
-      </ul>
+  <% if @posts %>
+    <% @posts.includes(:comments).each do |post| %>
+      <%= link_to user_post_path(user_id: @user.id, id: post.id), class: "user-link" do %>
+        <div class="">
+          <h3><%= post.title %></h3>
+          <p><%= post.text %></p>
+          <div class=" ">
+            <p>Comments: <%= post.comments_counter.nil? ? 0 : post.comments_counter %></p>
+            <p class="">Likes: <%= post.likes_counter.nil? ? 0 : post.likes_counter %></p>
+          </div>
+        </div>
+      <% end %>
+      <div class="">
+      <% @comments = Post.recent_comments(post.id) %>
+<% @comments.each do |comment| %>
+  <div class="">
+    <h3><%= comment.user_id %></h3>:
+    <p><%= comment.text %></p>
+  </div>
+<% end %>
+      </div>
     <% end %>
   <% else %>
-    <p>No comments yet.</p>
+    <p>No posts found</p>
   <% end %>
-</div>
-  <br>
-      
-  <button class="all_posts">
-    Next
-  </button>
-</div>
+  </div>
 
 </section>
+
+
+<div class="btn-section">
+      <button class="all_posts">
+        <%=link_to 'home',  '/users' %>
+      </button>
+
+      <button class="all_posts">
+        <%= link_to 'back', "/users/#{@user.id}" %>
+      </button>
+  
+
+
+ 
