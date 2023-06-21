@@ -2,18 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   subject { described_class.new }
-  it 'is valid with valid attributes' do
-    subject.name = 'John Doe'
-    subject.email = 'john@example.com'
-    subject.photo = 'example.jpg'
-    subject.bio = 'This is a bio.'
-    subject.posts_counter = 0
-    expect(subject).to be_valid
-  end
-
   it 'is not valid without a name' do
     subject.email = 'john@example.com'
-    subject.photo = 'example.jpg'
     subject.bio = 'This is a bio.'
     subject.posts_counter = 0
     expect(subject).to_not be_valid

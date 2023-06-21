@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   has_many :likes, foreign_key: :post_id
   has_many :comments, foreign_key: :post_id
   validates :title, presence: true, length: { maximum: 250 }
+  validates :text, presence: true
   validates :comments_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :likes_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
@@ -12,6 +13,22 @@ class Post < ApplicationRecord
 
   after_create :increment_user_posts_counter
   after_destroy :decrement_user_posts_counter
+
+  def self.recent_comments(post_id)
+    Post.find(post_id).comments.order(created_at: :desc).limit(5)
+  end
+  
+  def comments_counter
+    comments.count
+  end
+
+  def likes_counter
+    likes.count
+  end
+
+  def recent_comments
+    comments.order(created_at: :desc).limit(5)
+  end
 
   private
 
@@ -33,7 +50,4 @@ class Post < ApplicationRecord
     author.update(posts_count: author.posts.count)
   end
 
-  def recent_comments(post_id)
-    Post.find(post_id).comments.order(created_at: :desc).limit(5)
-  end
 end

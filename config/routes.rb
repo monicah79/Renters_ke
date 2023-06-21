@@ -5,4 +5,7 @@ Rails.application.routes.draw do
     resources :comment, only: [:new, :create]
   
   end
+  resources :user do
+    get 'post', on: :member
+  end
 end

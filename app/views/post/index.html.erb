@@ -2,17 +2,21 @@
 <% if @user.present? %>
 <%= link_to 'create post', user_path(@user.id) %>
 <% end %>
-  <div class='user'>
-  <% if @user.present? && @user.photo.present? %>
+<div class='user'>
+<% if @user.present? && @user.photo.present? %>
   <div><%= image_tag @user.photo, class: 'profile-photo' %></div>
 <% end %>
-  <div class='user_name'>
+<div class='user_name'>
+  <% if @user.present? %>
     <h2><%= @user.name %></h2>
     <div class='post_nums'>
       <p class="post_count">Number of posts: <%= @user.posts_counter %></p>
     </div>
-  </div>
-  </div>
+  <% else %>
+    <p>User not found</p>
+  <% end %>
+</div>
+</div>
 
   <div class="posts_container">
   <% @posts.each_with_index do |post, index| %>
@@ -66,7 +70,7 @@
       </button>
 
       <button class="all_posts">
-        <%= link_to 'back', "/users/#{@user.id}" %>
+        'back'
       </button>
   
 

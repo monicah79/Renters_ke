@@ -1,18 +1,17 @@
 class PostController < ApplicationController
-  before_action :set_user
-  before_action :set_post, except: %i[index new create]
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_user, only: [:index]
 
   def index
     @posts = Post.all
-    @user = User.find(params[:user_id])
-    @user_posts = Post.where(author_id: @user.id)
-    @user_comments = Comment.where(user_id: @user.id)
-    @post_comments = Comment.where(post_id: @user_posts.ids)
+    @user = User.find_by(id: params[:user_id])
+    @user_comments = Comment.where(id: params[:user_id])
+    @post_comments = Comment.where(id: params[:user_id])
+    render 'index', locals: { placeholder_text: 'This is the post index page' }
   end
 
   def show
     @post_comments = Comment.where(post_id: @post)
+    render 'show', locals: { placeholder_text: 'This is the post show page' }
   end
 
   def new
@@ -45,10 +44,12 @@ class PostController < ApplicationController
     redirect_to user_posts_path(current_user), notice: 'Post was successfully deleted.'
   end
 
-  private
-
   def set_user
-    @user = User.find(params[:user_id])
+    @user = User.find_by(id: params[:user_id]) || User.first
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 
   def post_params
