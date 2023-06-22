@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe UserController, type: :request do
-
   before do
     User.create(id: 1, name: 'John Doe', email: 'john.doe@example.com')
   end
