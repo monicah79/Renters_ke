@@ -80,4 +80,4 @@ group :test do
   gem 'will_paginate'
 end
 
-gem "devise", "~> 4.9"
+gem 'devise', '~> 4.9'
