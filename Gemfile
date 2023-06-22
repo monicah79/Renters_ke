@@ -79,3 +79,5 @@ group :test do
   gem 'webdrivers'
   gem 'will_paginate'
 end
+
+gem "devise", "~> 4.9"
