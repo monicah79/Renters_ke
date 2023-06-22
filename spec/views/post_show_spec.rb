@@ -1,11 +1,12 @@
 require 'rails_helper'
+require 'capybara/rspec'
 
-RSpec.feature 'PostIndex', type: :feature do
+RSpec.feature 'Show' do # rubocop:disable Metrics/BlockLength
   let!(:user) do
     new_user = User.new(
       id: 1,
-      name: "John Doe",
-      email: "john.doe+2@example.com",
+      name: 'John Doe',
+      email: 'john.doe+2@example.com',
       bio: "Hello, I'm John!",
       posts_counter: 0,
       photo: Rack::Test::UploadedFile.new(
@@ -27,14 +28,14 @@ RSpec.feature 'PostIndex', type: :feature do
   end
 
   let!(:comment1) do
-    comment0=Comment.create(
+    comment0 = Comment.create(
       author: user,
       text: 'First comment'
     )
     comment0.save
     comment0
   end
-  
+
   let!(:comment2) do
     comment3 = Comment.new(
       author: user,
@@ -43,7 +44,7 @@ RSpec.feature 'PostIndex', type: :feature do
     comment3.save
     comment3
   end
-  
+
   before do
     visit "/user/#{user.id}/post/#{post.id}"
   end
@@ -60,4 +61,3 @@ RSpec.feature 'PostIndex', type: :feature do
     expect(page).to have_content(post.comments.first)
   end
 end
-
