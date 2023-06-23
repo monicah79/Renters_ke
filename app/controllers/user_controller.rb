@@ -1,7 +1,8 @@
 class UserController < ApplicationController
+  before_action :authenticate_user!
   def index
     @users = User.all
-    render 'index', locals: { placeholder_text: 'Here is a list of all users' }
+    # render 'index', locals: { placeholder_text: 'Here is a list of all users' }
   end
 
   def show

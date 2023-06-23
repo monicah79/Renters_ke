@@ -1,6 +1,6 @@
 class PostController < ApplicationController
-  load_and_authorize_resource
-  before_action :authenticate_user!
+  # load_and_authorize_resource
+  
   before_action :set_user, only: [:index]
 
   def index
@@ -13,7 +13,8 @@ class PostController < ApplicationController
 
   def show
     @post_comments = Comment.where(post_id: @post)
-    render 'show', locals: { placeholder_text: 'This is the post show page' }
+    render 'show', locals: { placeholder_text: 'This is the p
+    ost show page' }
   end
 
   def new
