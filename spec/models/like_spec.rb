@@ -16,8 +16,8 @@ RSpec.describe Like, type: :model do
     end
 
     it 'should increase post_likes_counter by 1' do
-      expect(user.valid?).to be false # check if the user object is valid
-      expect(post.valid?).to be false
+      expect(user.valid?).to be true # check if the user object is valid
+      expect(post.valid?).to be true
     end
   end
 end
