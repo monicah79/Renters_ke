@@ -101,6 +101,10 @@ To run tests, run the following command accordingly:
 
 ## 👥 Author <a name="author"></a>
 
+👤 **Ridwan**
+- Github: [Ridwan](https://github.com/Ridwanullahi-code)
+- LinkedIn: [Ridwan](https://www.linkedin.com/in/ajayi-ridwan/)
+
 👤 **Monicah**
 
 - GitHub: [@monicah79](https://github.com/monicah79)
