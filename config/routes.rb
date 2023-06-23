@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: "home#index"
   get '/error', to: 'errors#error_404', as: :error
   resources :user, only: [:index, :show] do

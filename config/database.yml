@@ -1,7 +1,7 @@
 development:
   database: Renters_ke
-  username: postgres
-  password: ridwan
+  username: monnie
+  password: monnie
   adapter: postgresql
 
 test:
@@ -9,7 +9,6 @@ test:
   encoding: unicode
   database: Renters_ke tests
   pool: 5
-  username: postgres
-  password: ridwan
+  username: monnie
+  password: monnie
   port: 5432
-
