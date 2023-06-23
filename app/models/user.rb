@@ -6,7 +6,8 @@ class User < ApplicationRecord
   has_many :posts, foreign_key: 'author_id', dependent: :destroy
   has_many :comments
   # validates :name, presence: true
-  # validates :photo, presence: true
+  validates :photo, presence: true
+  has_many_attached :photo
   # validates :bio, presence: true
   # validates :email, presence: true, uniqueness: true
   # validates :posts_counter, presence: true, numericality: { only_integer: true }
