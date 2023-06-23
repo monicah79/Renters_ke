@@ -1,6 +1,5 @@
 class PostController < ApplicationController
-  # load_and_authorize_resource
-  
+  load_and_authorize_resource
   before_action :set_user, only: [:index]
 
   def index
