@@ -71,10 +71,14 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'activestorage', '~> 7.0'
+  gem 'cancancan'
   gem 'capybara'
+  gem 'carrierwave'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 6.0.0'
   gem 'selenium-webdriver'
   gem 'webdrivers'
   gem 'will_paginate'
 end
+
+gem 'devise', '~> 4.9'

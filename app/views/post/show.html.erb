@@ -30,6 +30,16 @@
     <p>Post not found.</p>
   <% end %>
 
+  <!-- View for a post -->
+<% if can? :destroy, @post %>
+  <%= button_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
+
+<!-- View for a comment -->
+<% if can? :destroy, @comment %>
+  <%= button_to "Delete", post_comment_path(@post, @comment), method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
+
   <section class='comments-area'>
     <% if @post_comments && @post_comments.any? %>
       <div class="comments">

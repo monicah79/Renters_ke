@@ -1,11 +1,12 @@
 class UserController < ApplicationController
   def index
     @users = User.all
+    render 'index', locals: { placeholder_text: 'Here is a list of all users' }
   end
 
   def show
-    @user = User.find(params[:id])
-    @recent_posts = @user.posts.recent.limit(10)
+    @user = User.find_by(id: params[:user_id])
+    @recent_posts = @user.posts.recent.limit(10) if @user.present?
   end
 
   def edit
