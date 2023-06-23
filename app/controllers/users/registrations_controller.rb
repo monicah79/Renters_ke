@@ -4,9 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
 
-
   # POST /resource
-
 
   # GET /resource/edit
   # def edit
