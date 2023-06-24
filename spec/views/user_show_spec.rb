@@ -14,7 +14,6 @@ RSpec.describe 'root page features' do
     visit '/user'
   end
 
-
   it 'displays the first 3 posts' do
     visit '/user'
 
