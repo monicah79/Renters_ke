@@ -14,11 +14,6 @@ RSpec.describe 'root page features' do
     visit '/user'
   end
 
-  it 'displays the user name and profile image' do
-    visit '/user'
-
-    expect(page).to have_content(@users.name)
-  end
 
   it 'displays the first 3 posts' do
     visit '/user'

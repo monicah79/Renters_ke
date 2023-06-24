@@ -8,7 +8,7 @@ RSpec.feature 'Index' do # rubocop:disable Metrics/BlockLength
      user
   end
 
-  let!(:post1) do
+  let!(:post) do
    post = Post.create(author_id: 1, title: 'Post 6', text: 'First Time Home Buyer Tips', comments_counter: 2, likes_counter: 3, user: user)
    post.save
    post
@@ -37,8 +37,8 @@ RSpec.feature 'Index' do # rubocop:disable Metrics/BlockLength
     page.has_content?(post.title)
   end
 
-
-  it 'has a link to view each post' do
+  it "I can see some of the post's text." do
     visit '/user/1/post'
+    page.has_content?(post.text)
   end
 end
