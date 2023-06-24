@@ -3,16 +3,17 @@ require 'capybara/rspec'
 
 RSpec.feature 'Index' do # rubocop:disable Metrics/BlockLength
   let!(:user) do
-     user=User.new(name: 'John Doe', email: 'john.doe+2@example.com', bio: "Hello, I'm John!", posts_counter: 0, password: 111111)
-     user.save
-     user
+    user = User.new(name: 'John Doe', email: 'john.doe+2@example.com', bio: "Hello, I'm John!", posts_counter: 0,
+                    password: 111_111)
+    user.save
+    user
   end
 
+<<<<<<< HEAD
   let!(:post) do
    post = Post.create(author_id: 1, title: 'Post 6', text: 'First Time Home Buyer Tips', comments_counter: 2, likes_counter: 3, user: user)
    post.save
    post
-  end
 
   let!(:post2) do
     user.posts.create(title: 'Second post', text: 'This is the second post', comments_counter: 0, likes_counter: 0)

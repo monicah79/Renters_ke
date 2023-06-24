@@ -3,16 +3,16 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   describe 'validations' do
     let(:user) { User.create(name: 'testuser') }
-let(:post) do
-  Post.new(
-    author_id: 2,
-    title: 'Test post',
-    text: 'This is a test post',
-    comments_counter: 0,
-    likes_counter: 0,
-    user: user
-  )
-end
+    let(:post) do
+      Post.new(
+        author_id: 2,
+        title: 'Test post',
+        text: 'This is a test post',
+        comments_counter: 0,
+        likes_counter: 0,
+        user:
+      )
+    end
 
     it 'validates presence of title' do
       post.title = nil
