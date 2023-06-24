@@ -70,7 +70,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'activestorage', '~> 7.0'
+
   gem 'cancancan'
   gem 'capybara'
   gem 'carrierwave'

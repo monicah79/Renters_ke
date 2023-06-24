@@ -1,18 +1,10 @@
 <h1 class="Head">Shows the details of selected user</h1>
 <section class='section-container'>
-  <% if @user %>
-    <div class='user'>
-      
-    <div class='profile-div'>
-  <% if @user.photo.attached? %>
-    <div class='profile-photo'>
-      <%= image_tag @user.photo.variant(resize: "300x300") %>
-    </div>
-  <% else %>
-    <div class='profile-photo default-photo'></div>
-  <% end %>
+  <div class='user'>
+  <div class='profile_Photo'>
+<div><img src="<%= user.photo %>" alt='profile-picture'></div>
 </div>
-</div>
+
       <div class='profile_name'>
         <% if @user.name %>
           <h2 class='name'><%= @user.name %></h2>

@@ -3,7 +3,8 @@ require 'capybara/rspec'
 
 RSpec.feature 'UsersIndices', type: :feature do
   let(:user) do
-    user = User.new(name: 'John Doe', email: 'john.doe+2@example.com', bio: "Hello, I'm John!", posts_counter: 0,
+    user = User.new(name: 'John Doe', photo: 'https://www.img2link.com/images/2023/04/13/c2bbea766ec481f3d798809dd39eedb6.png',
+                    email: 'john.doe+2@example.com', bio: "Hello, I'm John!", posts_counter: 0,
                     password: 111_111)
     user.save
     user

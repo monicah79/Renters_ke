@@ -52,4 +52,8 @@ RSpec.feature 'Show' do # rubocop:disable Metrics/BlockLength
   it 'displays comment text' do
     expect(page).to have_content(post.comments.first)
   end
+
+  it 'display total number of likes for the post' do
+    expect(post.likes_counter).to eq(0)
+  end
 end

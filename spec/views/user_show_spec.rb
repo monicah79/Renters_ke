@@ -4,14 +4,34 @@ require 'capybara/rspec'
 RSpec.describe 'root page features' do
   include Capybara::DSL
   let!(:user) do
-    user = User.new(name: 'John Doe', email: 'john.doe+2@example.com', bio: "Hello, I'm John!", posts_counter: 0,
+    user = User.new(name: 'John Doe', photo: 'https://www.img2link.com/images/2023/04/13/c2bbea766ec481f3d798809dd39eedb6.png',
+                    email: 'john.doe+2@example.com', bio: "Hello, I'm John!", posts_counter: 0,
                     password: 111_111)
+
     user.save
     user
   end
 
+  def image_exists?(url)
+    response = Net::HTTP.get_response(URI.parse(url))
+    response.code == '200'
+  rescue StandardError
+    false
+  end
+
   before(:each) do
     visit '/user'
+  end
+
+  it 'I can see the users profile picture' do
+    visit '/user'
+
+    expect(image_exists?(user.photo)).to be true
+  end
+
+  it "I can see the user's name." do
+    visit '/user/1/post'
+    page.has_content?(user.name)
   end
 
   it 'displays the first 3 posts' do
