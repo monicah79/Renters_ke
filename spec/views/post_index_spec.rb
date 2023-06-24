@@ -39,7 +39,7 @@ RSpec.feature 'Index' do # rubocop:disable Metrics/BlockLength
     page.has_content?(post.title)
   end
 
-  it "I can see some of the post's text." do
+  it 'has a link to view each post' do
     visit '/user/1/post'
     page.has_content?(post.text)
   end
