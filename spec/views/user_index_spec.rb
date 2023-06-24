@@ -3,16 +3,18 @@ require 'capybara/rspec'
 
 RSpec.feature 'UsersIndices', type: :feature do
   let(:user) do
-    user=User.new(name: 'John Doe', email: 'john.doe+2@example.com', bio: "Hello, I'm John!", posts_counter: 0, password: 111111)
+    user = User.new(name: 'John Doe', email: 'john.doe+2@example.com', bio: "Hello, I'm John!", posts_counter: 0,
+                    password: 111_111)
     user.save
     user
   end
 
   let!(:post) do
-    post = Post.create(author_id: 1, title: 'Post 6', text: 'First Time Home Buyer Tips', comments_counter: 2, likes_counter: 3, user: user)
+    post = Post.create(author_id: 1, title: 'Post 6', text: 'First Time Home Buyer Tips', comments_counter: 2,
+                       likes_counter: 3, user:)
     post.save
     post
-   end
+  end
 
   describe 'index page' do
     it 'I can see the name of all other users.' do
@@ -25,9 +27,10 @@ RSpec.feature 'UsersIndices', type: :feature do
       page.has_content?(user.posts_counter)
     end
 
-  it "When I click on a user, I am redirected to that user's show page." do
-    User.create(name: 'Jame', email: 'john.james+2@example.com', bio: "Hello, I'm james!", posts_counter: 3, password: 211111)
-    visit '/user'
+    it "When I click on a user, I am redirected to that user's show page." do
+      User.create(name: 'Jame', email: 'john.james+2@example.com', bio: "Hello, I'm james!", posts_counter: 3,
+                  password: 211_111)
+      visit '/user'
     end
   end
 end

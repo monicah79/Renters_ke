@@ -9,11 +9,12 @@ RSpec.feature 'Index' do # rubocop:disable Metrics/BlockLength
     user
   end
 
-<<<<<<< HEAD
   let!(:post) do
-   post = Post.create(author_id: 1, title: 'Post 6', text: 'First Time Home Buyer Tips', comments_counter: 2, likes_counter: 3, user: user)
-   post.save
-   post
+    post = Post.create(author_id: 1, title: 'Post 6', text: 'First Time Home Buyer Tips', comments_counter: 2,
+                       likes_counter: 3, user:)
+    post.save
+    post
+  end
 
   let!(:post2) do
     user.posts.create(title: 'Second post', text: 'This is the second post', comments_counter: 0, likes_counter: 0)

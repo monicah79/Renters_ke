@@ -5,7 +5,7 @@ class PostController < ApplicationController
   before_action :set_user, only: [:index]
 
   def index
-    @posts = Post.all
+    @posts = @user.posts.includes(:comments)
     @user = User.find_by(id: params[:user_id])
     @user_comments = Comment.where(id: params[:user_id])
     @post_comments = Comment.where(id: params[:user_id])

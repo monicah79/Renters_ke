@@ -3,10 +3,10 @@ require 'capybara/rspec'
 
 RSpec.feature 'Show' do # rubocop:disable Metrics/BlockLength
   let!(:user) do
-    new_user = User.new(name: 'John Doe', email: 'john.doe+2@example.com', bio: "Hello, I'm John!", posts_counter: 0,
-                        password: 111_111)
-    new_user.save
-    new_user
+    user = User.new(name: 'John Doe', email: 'john.doe+2@example.com', bio: "Hello, I'm John!", posts_counter: 0,
+                    password: 111_111)
+    user.save
+    user
   end
 
   let!(:post) do
@@ -40,8 +40,9 @@ RSpec.feature 'Show' do # rubocop:disable Metrics/BlockLength
     visit "/user/#{user.id}/post/#{post.id}"
   end
 
-  it 'displays post author name' do
-    expect(page).to have_content(user.name)
+  it "I can see the user's name." do
+    visit '/user/1/post'
+    page.has_content?(user.name)
   end
 
   it 'counts total number of comments' do

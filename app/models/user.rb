@@ -8,9 +8,6 @@ class User < ApplicationRecord
   validates :name, presence: true
   # validates :photo, presence: true
   has_many_attached :photo
-  # validates :bio, presence: true
-  # validates :email, presence: true, uniqueness: true
-  # validates :posts_counter, presence: true, numericality: { only_integer: true }
   after_create :update_posts_count
 
   private
