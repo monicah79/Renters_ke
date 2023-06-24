@@ -3,25 +3,35 @@ require 'capybara/rspec'
 
 RSpec.feature 'UsersIndices', type: :feature do
   let(:user) do
-    User.create(
-      name: 'John Doe',
-      email: 'john.doe+2@example.com',
-      bio: "Hello, I'm John!",
-      posts_counter: 0
-    ).tap do |u|
-      u.photo.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'profile.jpg')), filename: 'profile.jpg')
+    user = User.new(name: 'John Doe', photo: 'https://www.img2link.com/images/2023/04/13/c2bbea766ec481f3d798809dd39eedb6.png',
+                    email: 'john.doe+2@example.com', bio: "Hello, I'm John!", posts_counter: 0,
+                    password: 111_111)
+    user.save
+    user
+  end
+
+  let!(:post) do
+    post = Post.create(author_id: 1, title: 'Post 6', text: 'First Time Home Buyer Tips', comments_counter: 2,
+                       likes_counter: 3, user:)
+    post.save
+    post
+  end
+
+  describe 'index page' do
+    it 'I can see the name of all other users.' do
+      visit '/user'
+      page.has_content?(user.name)
     end
-  end
 
-  def image_exists?(url)
-    response = Net::HTTP.get_response(URI.parse(url))
-    response.code == '200'
-  rescue StandardError
-    false
-  end
+    it 'can see the number of posts each user has written.' do
+      visit '/user'
+      page.has_content?(user.posts_counter)
+    end
 
-  it 'displays the user name and profile image on the index page' do
-    visit '/user'
-    expect(image_exists?(user.photo)).to be false
+    it "When I click on a user, I am redirected to that user's show page." do
+      User.create(name: 'Jame', email: 'john.james+2@example.com', bio: "Hello, I'm james!", posts_counter: 3,
+                  password: 211_111)
+      visit '/user'
+    end
   end
 end

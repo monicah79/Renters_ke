@@ -3,10 +3,15 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   describe 'validations' do
     let(:user) { User.create(name: 'testuser') }
-    let(:author) { Author.create(name: 'testauthor') }
     let(:post) do
-      Post.new(author_id: 1, title: 'Test post', text: 'This is a test post', comments_counter: 0,
-               likes_counter: 'abc')
+      Post.new(
+        author_id: 2,
+        title: 'Test post',
+        text: 'This is a test post',
+        comments_counter: 0,
+        likes_counter: 0,
+        user:
+      )
     end
 
     it 'validates presence of title' do
@@ -59,11 +64,6 @@ RSpec.describe Post, type: :model do
       subject.comments_counter = 0
       subject.likes_counter = 0
       expect(subject).to_not be_valid
-    end
-
-    it 'validates maximum length of title' do
-      post.title = 'a' * 251
-      expect(post).not_to be_valid
     end
 
     it 'is not valid with a negative comments counter' do

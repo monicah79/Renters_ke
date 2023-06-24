@@ -6,7 +6,7 @@ class UserController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find(params[:id])
     @recent_posts = @user.posts.recent.limit(10) if @user.present?
   end
 

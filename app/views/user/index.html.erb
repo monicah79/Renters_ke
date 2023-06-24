@@ -3,11 +3,13 @@
 <section class='section-container'>
 <% @users.each do |user| %>
   <div class='user'>
-  <% if user.photo.attached? %>
-  <%= image_tag url_for(user.photo), class: "profile-photo" %>
+  <% if user.photo %>
+  
+  <div><img src="<%= user.photo %>" alt='profile-picture'></div>
 <% else %>
-  <%= image_tag 'profile.jpg' %>
+  <!-- Handle the case when user.photo is nil -->
 <% end %>
+
     <div class='profile_desc'>
       <h2 class='name'><%= user.name %></h2>
       <div class='post_link'>

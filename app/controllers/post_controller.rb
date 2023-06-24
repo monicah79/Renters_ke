@@ -1,12 +1,14 @@
 class PostController < ApplicationController
+  include CanCan::ControllerAdditions
   load_and_authorize_resource
+  before_action :authenticate_user!
   before_action :set_user, only: [:index]
 
   def index
-    @posts = Post.all
-    @user = User.find_by(id: params[:user_id])
-    @user_comments = Comment.where(id: params[:user_id])
-    @post_comments = Comment.where(id: params[:user_id])
+    @user = User.find(params[:user_id])
+    @posts = @user.posts.includes(:comments)
+    @user_comments = Comment.where(user_id: @user.id)
+    @post_comments = Comment.where(post_id: @posts.pluck(:id))
     render 'index', locals: { placeholder_text: 'This is the post index page' }
   end
 

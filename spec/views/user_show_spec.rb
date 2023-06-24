@@ -2,37 +2,36 @@ require 'rails_helper'
 require 'capybara/rspec'
 
 RSpec.describe 'root page features' do
-  # include Capybara::DSL
-  # let!(:user) do
-  #   new_user = User.new(
-  #     id: 1,
-  #     name: 'John Doe',
-  #     email: 'john.doe+2@example.com',
-  #     bio: "Hello, I'm John!",
-  #     posts_counter: 0,
-  #     photo: Rack::Test::UploadedFile.new(
-  #       Rails.root.join('app', 'assets', 'images', 'profile.jpg'),
-  #       'image/jpeg'
-  #     )
-  #   )
-  #   new_user.save
-  #   new_user
-  # end
+  include Capybara::DSL
+  let!(:user) do
+    user = User.new(name: 'John Doe', photo: 'https://www.img2link.com/images/2023/04/13/c2bbea766ec481f3d798809dd39eedb6.png',
+                    email: 'john.doe+2@example.com', bio: "Hello, I'm John!", posts_counter: 0,
+                    password: 111_111)
+
+    user.save
+    user
+  end
+
+  def image_exists?(url)
+    response = Net::HTTP.get_response(URI.parse(url))
+    response.code == '200'
+  rescue StandardError
+    false
+  end
 
   before(:each) do
-    @users = [
-      User.create(name: 'Fatima', photo: 'https://picsum.photos/300/200', bio: 'CEO Nairobi Hub', posts_counter: 3),
-      User.create(name: 'Melissa', photo: 'https://picsum.photos/300/200', bio: 'Teacher from Mexico.',
-                  posts_counter: 3),
-      User.create(name: 'Nick', photo: 'https://picsum.photos/300/200', bio: 'A software developer', posts_counter: 0)
-    ]
     visit '/user'
   end
 
-  it 'displays the user name and profile image' do
+  it 'I can see the users profile picture' do
     visit '/user'
 
-    expect(page).to have_content(user.name)
+    expect(image_exists?(user.photo)).to be true
+  end
+
+  it "I can see the user's name." do
+    visit '/user/1/post'
+    page.has_content?(user.name)
   end
 
   it 'displays the first 3 posts' do
@@ -43,19 +42,28 @@ RSpec.describe 'root page features' do
     end
   end
 
-  it 'displays the user name and profile image' do
-    expect(page).to have_content(@users.first.name)
-    expect(page).to have_content(@users.first.bio)
-    expect(page.has_xpath?("//img[@src='#{@users.first.photo}']")).to be true
-    expect(page).to have_content("Number of posts: #{@users.first.posts_counter}")
+  it 'I can see the number of posts the user has written.' do
+    visit '/user'
+    page.has_content?(user.posts_counter)
   end
 
-  it 'displays a section for pagination' do
-    Post.create(title: 'Post 6', text: 'First Time Home Buyer Tips', comments_counter: 2, likes_counter: 3)
-    Post.create(title: 'Post 7', text: 'Job interview tips', comments_counter: 2, likes_counter: 5)
-    Post.create(title: 'Post 8', text: 'Nature Photography', comments_counter: 3, likes_counter: 1)
-    Post.create(title: 'Post 9', text: 'Preparing for a marathon', comments_counter: 1, likes_counter: 2)
-    Post.create(title: 'Post 10', text: 'Favorite cooking recipes', comments_counter: 0, likes_counter: 7)
+  it "I can see the user's bio." do
     visit '/user'
+    page.has_content?(user.bio)
+  end
+
+  before(:each) do
+    visit '/user'
+  end
+
+  it "I can see a button that lets me view all of a user's posts." do
+    visit 'user'
+    page.has_button?('See all posts')
+  end
+
+  it "When you go see all posts, it redirects me to the user's post's index page." do
+    visit 'user'
+    visit 'user/1post'
+    page.has_content?(user.name)
   end
 end

@@ -3,9 +3,9 @@
 <%= link_to 'create post', user_path(@user.id) %>
 <% end %>
 <div class='user'>
-<% if @user.present? && @user.photo.present? %>
-  <div><%= image_tag @user.photo, class: 'profile-photo' %></div>
-<% end %>
+       <div class='profile_Photo'>
+       <div><img src="<%= @user.photo %>" alt='profile-picture'></div>
+  </div>
 <div class='user_name'>
   <% if @user.present? %>
     <h2><%= @user.name %></h2>
@@ -35,8 +35,8 @@
 
   <div class="post">
   <% if @posts %>
-    <% @posts.includes(:comments).each do |post| %>
-      <%= link_to user_post_path(user_id: @user.id, id: post.id), class: "user-link" do %>
+    <% @posts.each do |post| %>
+      <%= link_to user_post_path(@user, post), class: "user-link" do %>
         <div class="">
           <h3><%= post.title %></h3>
           <p><%= post.text %></p>
