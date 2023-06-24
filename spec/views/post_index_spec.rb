@@ -39,7 +39,6 @@ RSpec.feature 'Index' do # rubocop:disable Metrics/BlockLength
     page.has_content?(post.title)
   end
 
-
   it 'has a link to view each post' do
     visit '/user/1/post'
   end
