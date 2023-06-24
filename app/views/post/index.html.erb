@@ -4,7 +4,7 @@
 <% end %>
 <div class='user'>
        <div class='profile_Photo'>
-       <div><img src="<%= user.photo %>" alt='profile-picture'></div>
+       <div><img src="<%= @user.photo %>" alt='profile-picture'></div>
   </div>
 <div class='user_name'>
   <% if @user.present? %>
@@ -36,7 +36,7 @@
   <div class="post">
   <% if @posts %>
     <% @posts.each do |post| %>
-      <%= link_to user_post_path(user_id: @user.id, id: post.id), class: "user-link" do %>
+      <%= link_to user_post_path(@user, post), class: "user-link" do %>
         <div class="">
           <h3><%= post.title %></h3>
           <p><%= post.text %></p>

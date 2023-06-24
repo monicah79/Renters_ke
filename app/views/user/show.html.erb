@@ -1,35 +1,35 @@
 <h1 class="Head">Shows the details of selected user</h1>
 <section class='section-container'>
   <div class='user'>
-  <div class='profile_Photo'>
-<div><img src="<%= user.photo %>" alt='profile-picture'></div>
-</div>
-
-      <div class='profile_name'>
-        <% if @user.name %>
-          <h2 class='name'><%= @user.name %></h2>
-          <div class='post_link'>
-            <p>Number of posts: <%= @user.posts_counter %></p>
-          </div>
-        <% else %>
-          <p>No name.</p>
-        <% end %>
-      </div>
+    <div class='profile_Photo'>
+      <div><img src="<%= @user.photo %>" alt='profile-picture'></div>
     </div>
 
-    <div class="Bio">
-      <div class="Bio_box">
-        <h3>Bio :</h3>  
-        <% if @user.bio %>
-          <p><%= @user.bio %></p>
-        <% else %>
-          <p>No bio.</p>
-        <% end %>
-      </div>
+    <div class='profile_name'>
+      <% if @user.name %>
+        <h2 class='name'><%= @user.name %></h2>
+        <div class='post_link'>
+          <p>Number of posts: <%= @user.posts_counter %></p>
+        </div>
+      <% else %>
+        <p>No name.</p>
+      <% end %>
     </div>
+  </div>
 
+  <div class="Bio">
+    <div class="Bio_box">
+      <h3>Bio :</h3>  
+      <% if @user.bio %>
+        <p><%= @user.bio %></p>
+      <% else %>
+        <p>No bio.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <% if @recent_posts.any? %>
     <section class="posts_container">
-    <% if @recent_posts.any? %>
       <% @recent_posts.each_with_index do |post, index| %>
         <div class="post">
           <h3>Post #<%= index+1 %></h3>
@@ -37,15 +37,16 @@
           <p><%= post.text %></p>
         </div>
       <% end %>
-    <% else %>
-      <p>No recent posts found.</p>
-    <% end %>
-  </section>
+    </section>
+  <% else %>
+    <p>No recent posts found.</p>
+  <% end %>
+
+  <% if @user %>
+    <button>
+      <%= link_to "Pagination", user_post_path(@user) %>
+    </button>
   <% else %>
     <p>User not found.</p>
   <% end %>
-  <button>
-  
-    <%= link_to "Pagination", user_post_path(:user_id) %>
-    </button>
 </section>
