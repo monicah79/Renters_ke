@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable # :confirmable
   has_many :posts, foreign_key: 'author_id', dependent: :destroy
   has_many :comments
-  # validates :name, presence: true
+  validates :name, presence: true
   # validates :photo, presence: true
   has_many_attached :photo
   # validates :bio, presence: true
